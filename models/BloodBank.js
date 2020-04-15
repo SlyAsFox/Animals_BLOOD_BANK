@@ -27,8 +27,14 @@ BloodBank.init({
     // }
 });
 
-// Clinics.associate = ( models ) => {
-//     Clinics.hasMany(models.Animals);
-// };
+BloodBank.associate = ( models ) => {
+    BloodBank.belongsTo(models.Clinic, {
+        as: 'clinic'
+    });
+
+    BloodBank.hasMany(models.Donation, {
+        as: 'donations'
+    });
+};
 
 module.exports = BloodBank;

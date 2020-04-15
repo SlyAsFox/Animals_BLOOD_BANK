@@ -31,6 +31,18 @@ Clinic.associate = ( models ) => {
     Clinic.hasMany(models.Staff, {
         as: 'staff'
     });
+
+    Clinic.hasMany(models.BloodRequest, {
+        as: 'requests'
+    });
+
+    Clinic.hasMany(models.MedicalCheck, {
+        as: 'checks'
+    });
+
+    Clinic.hasMany(models.BloodBank, {
+        as: 'blood_banks'
+    });
 };
 
 module.exports = Clinic;

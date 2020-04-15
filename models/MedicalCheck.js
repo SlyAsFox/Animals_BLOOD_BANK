@@ -10,7 +10,7 @@ MedicalCheck.init({
         allowNull: false
     },
     doctorId: {
-    type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         field: 'doctor_id',
         allowNull: false
     },
@@ -37,8 +37,15 @@ MedicalCheck.init({
     // }
 });
 
-// Clinics.associate = ( models ) => {
-//     Clinics.hasMany(models.Animals);
-// };
+MedicalCheck.associate = ( models ) => {
+    MedicalCheck.belongsTo(models.Animal, {
+        as: 'animal',
+        foreignKey: 'animal_id'
+    });
+    MedicalCheck.belongsTo(models.Clinic, {
+        as: 'clinic',
+        foreignKey: 'clinic_id'
+    });
+};
 
 module.exports = MedicalCheck;

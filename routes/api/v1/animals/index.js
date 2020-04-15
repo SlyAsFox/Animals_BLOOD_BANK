@@ -1,11 +1,24 @@
 const { Router } = require('express');
 const router = new Router();
 const asyncHandler = require('express-async-handler');
-const { Animal } = require('../../../../models');
+const { Animal, User, MedicalCheck } = require('../../../../models');
 const faker = require('faker');
 
 router.get('/', asyncHandler(async (req, res) => {
-    const animals = await Animal.findAll();
+    const animals = await Animal.findAll({
+        include: [
+            {
+                attributes: ['fullName', 'city', 'phone', 'email'],
+                model: User,
+                as: 'owner'
+            },
+            {
+                model: MedicalCheck,
+                as: 'checks'
+                // include:
+            }
+        ]
+    });
 
     res.send({
         data: animals

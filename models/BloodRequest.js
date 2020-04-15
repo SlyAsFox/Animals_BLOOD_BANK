@@ -25,11 +25,6 @@ BloodRequest.init({
         field: 'user_id',
         allowNull: false
     },
-    animalId: {
-        type: DataTypes.INTEGER,
-        field: 'animal_id',
-        allowNull: false
-    },
     clinicId: {
         type: DataTypes.INTEGER,
         field: 'clinic_id',
@@ -45,8 +40,15 @@ BloodRequest.init({
     // }
 });
 
-// Clinics.associate = ( models ) => {
-//     Clinics.hasMany(models.Animals);
-// };
+BloodRequest.associate = ( models ) => {
+    BloodRequest.belongsTo(models.User, {
+        as: 'creator',
+        foreignKey: 'user_id'
+    });
+    BloodRequest.belongsTo(models.Clinic, {
+        as: 'clinic',
+        foreignKey: 'clinic_id'
+    });
+};
 
 module.exports = BloodRequest;

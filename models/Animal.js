@@ -49,7 +49,16 @@ Animal.init({
 });
 
 Animal.associate = ( models ) => {
-    Animal.belongsTo(models.User);
+    Animal.belongsTo(models.User, {
+        as: 'owner',
+        foreignKey: 'user_id'
+    });
+
+    Animal.hasMany(models.MedicalCheck, {
+        as: 'checks'
+    });
+
+    // Animal.hasMany(models.BloodRequest);
 };
 
 module.exports = Animal;

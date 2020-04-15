@@ -43,8 +43,10 @@ User.init({
     // }
 });
 
-User.associate = (models ) => {
+User.associate = ( models ) => {
     User.hasMany(models.Animal);
+
+    User.hasMany(models.BloodRequest);
 };
 
 module.exports = User;

@@ -24,7 +24,7 @@ Donation.init({
     },
     bloodBankId: {
         type: DataTypes.INTEGER,
-        field: 'bloodBank_id',
+        field: 'blood_bank_id',
         allowNull: false
     },
     donorId: {
@@ -47,8 +47,11 @@ Donation.init({
     // }
 });
 
-// Clinics.associate = ( models ) => {
-//     Clinics.hasMany(models.Animals);
-// };
+Donation.associate = ( models ) => {
+    Donation.belongsTo(models.BloodBank, {
+        as: 'blood_bank',
+        foreignKey: 'bloodBank_id'
+    });
+};
 
 module.exports = Donation;

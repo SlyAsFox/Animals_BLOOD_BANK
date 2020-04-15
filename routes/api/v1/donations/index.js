@@ -1,11 +1,18 @@
 const { Router } = require('express');
 const router = new Router();
 const asyncHandler = require('express-async-handler');
-const { Donation } = require('../../../../models');
+const { Donation, BloodBank } = require('../../../../models');
 const faker = require('faker');
 
 router.get('/', asyncHandler(async (req, res) => {
-    const donations = await Donation.findAll();
+    const donations = await Donation.findAll({
+        include: [
+            {
+                model: BloodBank,
+                as: 'blood_bank'
+            }
+        ]
+    });
 
     res.send({
         data: donations
