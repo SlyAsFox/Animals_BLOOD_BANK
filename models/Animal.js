@@ -58,6 +58,8 @@ Animal.associate = ( models ) => {
         as: 'checks'
     });
 
+    Animal.hasOne(models.BloodRequest)
+    Animal.hasMany(models.Donation);
     // Animal.hasMany(models.BloodRequest);
 };
 

@@ -16,6 +16,10 @@ Clinic.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     foundationYear: {
         type: DataTypes.INTEGER,
         field: 'foundation_year',

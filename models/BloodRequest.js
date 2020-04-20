@@ -17,7 +17,7 @@ BloodRequest.init({
         allowNull: false
     },
     createdAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false
     },
     userId: {
@@ -32,6 +32,10 @@ BloodRequest.init({
     },
     address: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    animalId: {
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 },{
@@ -53,6 +57,7 @@ BloodRequest.associate = ( models ) => {
         as: 'clinic',
         foreignKey: 'clinic_id'
     });
+    BloodRequest.belongsTo(models.Animal);
 };
 
 module.exports = BloodRequest;

@@ -6,7 +6,7 @@ const faker = require('faker');
 const FakerByFox = require('../../../../FakerByFox');
 
 router.get('/', asyncHandler(async (req, res) => {
-    const users = await Clinic.findAll(
+    const clinics = await Clinic.findAll(
         {
             include: [
                 {
@@ -27,13 +27,28 @@ router.get('/', asyncHandler(async (req, res) => {
     );
 
     res.send({
-        data: users
+        data: clinics
+    })
+}));
+
+router.get('/:city/:year', asyncHandler(async (req, res) => {
+    const clinics = await Clinic.findAll(
+        {
+            where: {
+                city: req.params.city,
+                foundationYear: req.params.year
+            }
+        }
+    );
+
+    res.send({
+        data: clinics
     })
 }));
 
 //post
 router.get('/create', asyncHandler(async (req, res) => {
-    const user = await Clinic.create({
+    const clinics = await Clinic.create({
         fullName: faker.name.findName(),
         sex: 'male',
         city: faker.address.city(),
@@ -45,7 +60,7 @@ router.get('/create', asyncHandler(async (req, res) => {
     });
 
     res.send({
-        data: user
+        data: clinics
     })
 }));
 
@@ -92,7 +107,7 @@ router.get('/create', asyncHandler(async (req, res) => {
 
 
 router.get('/:id', asyncHandler(async (req, res) => {
-    const user = await Clinic.findOne({
+    const clinics = await Clinic.findOne({
         where: {
             id: req.params.id
         },
@@ -103,7 +118,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
     });
 
     res.send({
-        data: user
+        data: clinics
     })
 }));
 

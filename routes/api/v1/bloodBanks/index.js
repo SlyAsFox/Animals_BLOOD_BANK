@@ -24,14 +24,34 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/:id', asyncHandler(async (req, res) => {
-    const donation = await BloodBank.findOne({
+    const bloodBank = await BloodBank.findOne({
         where: {
             id: req.params.id
         }
     });
 
     res.send({
-        data: donation
+        data: bloodBank
+    })
+}));
+
+router.get('/:clinicName/:specialization', asyncHandler(async (req, res) => {
+
+    const clinic = await Clinic.findOne({
+        where: {
+            name: req.params.clinicName
+        }
+    });
+
+    const bloodBank = await BloodBank.findOne({
+        where: {
+            clinicId: clinic.id,
+            specialization: req.params.specialization
+        }
+    });
+
+    res.send({
+        data: bloodBank
     })
 }));
 

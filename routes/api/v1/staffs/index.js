@@ -12,6 +12,19 @@ router.get('/', asyncHandler(async (req, res) => {
     })
 }));
 
+router.get('/:position/:gender', asyncHandler(async (req, res) => {
+    const staff = await Staff.findAll({
+        where: {
+            sex: req.params.gender,
+            position: req.params.position
+        }
+    });
+
+    res.send({
+        data: staff
+    })
+}));
+
 //post
 router.get('/create', asyncHandler(async (req, res) => {
     const staff = await Staff.create({

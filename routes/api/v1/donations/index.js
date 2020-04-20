@@ -18,6 +18,19 @@ router.get('/', asyncHandler(async (req, res) => {
     })
 }));
 
+router.get('/:quantity/:group', asyncHandler(async (req, res) => {
+    const donations = await Donation.findAll({
+        where: {
+            quantity: req.params.quantity,
+            group: req.params.group
+        }
+    });
+
+    res.send({
+        data: donations
+    })
+}));
+
 router.get('/:id', asyncHandler(async (req, res) => {
     const donation = await Donation.findOne({
         where: {

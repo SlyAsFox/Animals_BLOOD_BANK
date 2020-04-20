@@ -25,15 +25,30 @@ router.get('/', asyncHandler(async (req, res) => {
     })
 }));
 
+router.get('/:date/:disease', asyncHandler(async (req, res) => {
+    const request = await BloodRequest.findAll({
+        where: {
+            createdAt: req.params.date,
+            disease: req.params.disease
+        }
+    });
+
+    res.send({
+        data: request,
+        p1: req.params.date,
+        p2: req.params.disease
+    })
+}));
+
 router.get('/:id', asyncHandler(async (req, res) => {
-    const donation = await BloodRequest.findOne({
+    const request = await BloodRequest.findOne({
         where: {
             id: req.params.id
         }
     });
 
     res.send({
-        data: donation
+        data: request
     })
 }));
 

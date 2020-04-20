@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = new Router();
 const asyncHandler = require('express-async-handler');
-const { User } = require('../../../../models');
+const { User, Animal } = require('../../../../models');
 const faker = require('faker');
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -9,6 +9,26 @@ router.get('/', asyncHandler(async (req, res) => {
 
     res.send({
         data: users
+    })
+}));
+
+router.get('/:email/:manyAnimals', asyncHandler(async (req, res) => {
+    const user = await User.findOne({
+        where: {
+            email: req.params.email
+        }
+    });
+
+    const animals = await Animal.findAll({
+        where: {
+            userId: user.id
+        }
+    });
+
+
+
+    res.send({
+        data: ( animals.length > 1 ) ? user : []
     })
 }));
 

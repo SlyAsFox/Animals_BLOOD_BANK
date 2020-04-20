@@ -9,9 +9,9 @@ MedicalCheck.init({
         field: 'clinic_id',
         allowNull: false
     },
-    doctorId: {
+    staffId: {
         type: DataTypes.INTEGER,
-        field: 'doctor_id',
+        field: 'staff_id',
         allowNull: false
     },
     animalId: {
@@ -46,6 +46,7 @@ MedicalCheck.associate = ( models ) => {
         as: 'clinic',
         foreignKey: 'clinic_id'
     });
+    MedicalCheck.belongsTo(models.Staff);
 };
 
 module.exports = MedicalCheck;

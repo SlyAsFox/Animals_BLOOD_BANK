@@ -14,7 +14,8 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:type/:breed', asyncHandler(async (req, res) => {
     const animals = await Animal.findAll({
         where: {
-
+            breed: req.params.breed,
+            type: req.params.type,
         }
     });
 
