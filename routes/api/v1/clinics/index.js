@@ -3,6 +3,7 @@ const router = new Router();
 const asyncHandler = require('express-async-handler');
 const { Clinic, Staff, MedicalCheck, BloodRequest } = require('../../../../models');
 const faker = require('faker');
+const FakerByFox = require('../../../../FakerByFox');
 
 router.get('/', asyncHandler(async (req, res) => {
     const users = await Clinic.findAll(
@@ -37,7 +38,8 @@ router.get('/create', asyncHandler(async (req, res) => {
         sex: 'male',
         city: faker.address.city(),
         birth: faker.date.past(10, '2000-01-01'),
-        phone: `+38 063 451 42 32`,
+        // phone: `+38 063 451 42 32`,
+        phone: FakerByFox.phone('ua'),
         email: faker.internet.email(),
         password: faker.internet.password(8)
     });

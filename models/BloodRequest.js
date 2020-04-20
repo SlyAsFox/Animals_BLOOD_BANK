@@ -29,6 +29,10 @@ BloodRequest.init({
         type: DataTypes.INTEGER,
         field: 'clinic_id',
         allowNull: false
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },{
     sequelize,

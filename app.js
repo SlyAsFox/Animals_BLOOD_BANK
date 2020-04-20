@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const usersRoutes = require('./routes/api/v1/users');
 const animalsRoutes = require('./routes/api/v1/animals');
@@ -10,6 +11,8 @@ const bloodRequestsRoutes = require('./routes/api/v1/bloodRequests');
 const medicalChecksRoutes = require('./routes/api/v1/medicalChecks');
 
 const app = express();
+
+app.use(cors());
 
 // const { People, Articles } = require('./models');
 const sequelize = require('./sequelize');

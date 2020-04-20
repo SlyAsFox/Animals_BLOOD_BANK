@@ -16,7 +16,11 @@ Clinic.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-
+    foundationYear: {
+        type: DataTypes.INTEGER,
+        field: 'foundation_year',
+        allowNull: false
+    }
 },{
     sequelize,
     modelName: 'clinics',

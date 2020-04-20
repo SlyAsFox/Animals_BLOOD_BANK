@@ -13,7 +13,7 @@ User.init({
         type: DataTypes.STRING,
         allowNull: true
     },
-    city: {
+    address: {
         type: DataTypes.STRING,
         allowNull: true
     },
