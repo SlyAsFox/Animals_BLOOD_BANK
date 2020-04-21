@@ -32,14 +32,12 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/:city/:year', asyncHandler(async (req, res) => {
-    const clinics = await Clinic.findAll(
-        {
+    const clinics = await Clinic.findAll({
             where: {
                 city: req.params.city,
                 foundationYear: req.params.year
             }
-        }
-    );
+    });
 
     res.send({
         data: clinics

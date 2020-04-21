@@ -49,10 +49,78 @@ module.exports = {
         return randNumber;
 },
     sex: () => {
-
+        const sex = ['male', 'female'];
+        return sex[Math.floor(Math.random() * 2)];
     },
-    animalName: () => {
-
+    animalName: (sex) => {
+        const names = {
+            male: [
+                'Charlie',
+                'Max',
+                'Bailey',
+                'Buddy',
+                'Cooper',
+                'Jack',
+                'Oliver',
+                'Riley',
+                'Tucker',
+                'Rocky',
+                'Teddy',
+                'Bentley',
+                'Jake',
+                'Bear',
+                'Gus',
+                'Duke',
+                'Murphy',
+                'Harley',
+                'Henry',
+                'Leo',
+                'Dexter',
+                'Zeus',
+                'Lucky',
+                'Milo',
+                'Apollo',
+                'Jax',
+                'Scout',
+                'Shadow',
+                'Sam',
+                'Cody',
+            ],
+            female: [
+                'Bella',
+                'Lucy',
+                'Bailey',
+                'Lola',
+                'Daisy',
+                'Molly',
+                'Chloe',
+                'Sophie',
+                'Sadie',
+                'Lily',
+                'Coco',
+                'Maggie',
+                'Gracie',
+                'Luna',
+                'Abby',
+                'Zoey',
+                'Stella',
+                'Roxy',
+                'Lexi',
+                'Ruby',
+                'Rosie',
+                'Sasha',
+                'Marley',
+                'Penny',
+                'Ellie',
+                'Lilly',
+                'Ginger',
+                'Emma',
+                'Nala',
+                'Mia',
+            ]
+        };
+        let rand = Math.round(0 - 0.5 + Math.random() * (names[sex].length + 1));
+        return names[sex][rand]
     }
 };
 

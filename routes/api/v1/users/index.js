@@ -3,6 +3,7 @@ const router = new Router();
 const asyncHandler = require('express-async-handler');
 const { User, Animal } = require('../../../../models');
 const faker = require('faker');
+const fakerByFox = require('../../../../FakerByFox');
 
 router.get('/', asyncHandler(async (req, res) => {
     const users = await User.findAll();
@@ -25,8 +26,6 @@ router.get('/:email/:manyAnimals', asyncHandler(async (req, res) => {
         }
     });
 
-
-
     res.send({
         data: ( animals.length > 1 ) ? user : []
     })
@@ -37,9 +36,9 @@ router.get('/create', asyncHandler(async (req, res) => {
     const user = await User.create({
         fullName: faker.name.findName(),
         sex: 'male',
-        city: faker.address.city(),
+        address: faker.address.city(),
         birth: faker.date.past(10, '2000-01-01'),
-        phone: `+38 063 451 42 32`,
+        phone: fakerByFox.phone('ua'),
         email: faker.internet.email(),
         password: faker.internet.password(8)
     });
@@ -71,10 +70,10 @@ router.put('/:id', asyncHandler(async (req, res) => {
     }
 }));
 
-router.delete('/:id', asyncHandler(async (req, res) => {
+router.delete('/:email', asyncHandler(async (req, res) => {
     let user = await User.findOne({
         where: {
-            id: req.params.id
+            email: req.params.email
         }
     });
 
@@ -106,5 +105,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
         data: user
     })
 }));
+
+
 
 module.exports = router;
